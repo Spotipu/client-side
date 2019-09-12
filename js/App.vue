@@ -8,6 +8,9 @@
             <Register @register="register" @error="showError" @loginPage='changePage'></Register>
         </div>
         <div v-else-if="currentPage == 'home'">
+            
+
+
             <Home @logout="logout" ></Home>
         </div>
     </div>
@@ -69,6 +72,14 @@ export default {
         Login,
         Register,
         Home
+    },
+    created : function() {
+        const token = localStorage.getItem('token')
+        if ( token ) {
+            this.changePage('home')
+        } else {
+            this.changePage('login')
+        }
     }
 }
 </script>
