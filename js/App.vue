@@ -71,12 +71,12 @@ export default {
         Home
     },
     created : function() {
-        // const token = localStorage.getItem('token')
-        // if ( token ) {
-        //     this.changePage('home')
-        // } else {
-        //     this.changePage('login')
-        // }
+        const token = localStorage.getItem('token')
+        if ( token ) {
+            this.changePage('home')
+        } else {
+            this.changePage('login')
+        }
     }
 }
 </script>

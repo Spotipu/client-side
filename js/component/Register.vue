@@ -1,14 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <div>
-        REGISTER
-        <form @submit.prevent="register()">
-            <input type="email" v-model='registerEmail'>
-            <input type="password" v-model='registerPassword'>
-            <input type="submit" value="Register">
-        </form>
-        <button @click.prevent="loginPage()">Login</button>
-=======
      <div>
         <b-container>
             <b-card class="my-5"
@@ -49,7 +39,6 @@
                 <hr>
             </b-card>
         </b-container>
->>>>>>> add layout
     </div>
 </template>
 
