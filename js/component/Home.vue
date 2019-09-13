@@ -7,7 +7,7 @@
 
       </div>
       <div v-else-if="homePage == 'allFav'">
-            <AllFavorites></AllFavorites>
+            <AllFavorite></AllFavorite>
             <button @click.prevent="changeHomePage('allMusic')"> All Music </button>
             <button @click.prevent="changeHomePage('myMusic')"> My Music</button>
 
@@ -22,9 +22,10 @@
 </template>
 
 <script>
-import AllFavorites from './AllFavorites';
+import AllFavorite from './AllFavorite';
 import AllMusic from './AllMusic'
 import MyMusic from './MyMusic'
+
 export default {
     data : function(){
         return {
@@ -41,7 +42,7 @@ export default {
         }
     },
     components : {
-        AllFavorites,
+        AllFavorite,
         AllMusic,
         MyMusic
     }
