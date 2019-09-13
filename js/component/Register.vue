@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
      <div>
         <b-container>
             <b-card class="my-5"
@@ -39,6 +40,16 @@
                 <hr>
             </b-card>
         </b-container>
+=======
+    <div>
+        REGISTER
+        <form @submit.prevent="register()">
+            <input type="email" v-model='registerEmail'>
+            <input type="password" v-model='registerPassword'>
+            <input type="submit" value="Register">
+        </form>
+        <button @click.prevent="loginPage()">Login</button>
+>>>>>>> cb5303131a90ffb8034348eaab3b14eb5887215f
     </div>
 </template>
 
