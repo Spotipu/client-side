@@ -6,7 +6,7 @@
     <b-row>
       <b-col class="my-3" cols="12" v-for="fav in myFavorites" :key="fav._id">
           <b class="card">
-            <Audio :file="fav.url"></Audio>
+            <Audio :title="fav.title" :artist="fav.artist" :file="fav.url"></Audio>
             <div>
                 <UnFavoriteButton :id="fav._id" @unFav="fetchAllFavorites()"></UnFavoriteButton>
             </div>            
