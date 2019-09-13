@@ -1,8 +1,21 @@
 <template>
-    <div>
+    <b-container>
+    <b-row>
+      <h3>My Music</h3>
+    </b-row>
+    <b-row>
+      <b-col class="my-3" cols="12" v-for="music in myMusic" :key="music._id">
+          <b class="card">
+            <Audio :file="music.url"></Audio>
+          </b>
+      </b-col>
+    </b-row>
+  </b-container>
+
+    <!-- <div>
         <h1>My Music</h1>
         <Audio v-for="music in myMusic" :key="music._id" :file="music.url"></Audio>
-    </div>
+    </div> -->
 </template>
 
 <script>

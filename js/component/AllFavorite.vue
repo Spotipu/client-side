@@ -1,5 +1,21 @@
 <template>
-    <div>
+    <b-container>
+    <b-row>
+      <h3>All Favoites</h3>
+    </b-row>
+    <b-row>
+      <b-col class="my-3" cols="12" v-for="fav in myFavorites" :key="fav._id">
+          <b class="card">
+            <Audio :file="fav.url"></Audio>
+            <div>
+                <UnFavoriteButton :id="fav._id" @unFav="fetchAllFavorites()"></UnFavoriteButton>
+            </div>            
+          </b>
+      </b-col>
+    </b-row>
+  </b-container>
+
+    <!-- <div>
         <h1>All Favorites</h1>
         <div v-if="myFavorites.length == 0 ">
             <h2>No Fav</h2>
@@ -12,7 +28,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
