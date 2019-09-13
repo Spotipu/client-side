@@ -3,6 +3,7 @@
       <h1>All Music</h1>
       <div v-for="music in allMusic" :key="music._id">
         <Audio :file="music.url"></Audio>
+        <FavoriteButton :id="music._id" ></FavoriteButton>
       </div>
   </div>
 </template>
@@ -10,6 +11,8 @@
 <script>
 import server from '../apis/server';
 import Audio from '../component/Audio'
+import FavoriteButton from './FavoriteButton'
+
 const { axios, serverURL , Swal } = server
 
 export default {
@@ -36,13 +39,17 @@ export default {
                 console.log("ERR")
                 console.log( err );
             }) 
+        },
+        fetchFavMusic() {
+            this.$emit('fetchFavMusic')
         }
     },
     created : function (){
         this.fetchAllMusic()
     },
     components : {
-        Audio
+        Audio,
+        FavoriteButton
     }
 }
 </script>
