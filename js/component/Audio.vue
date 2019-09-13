@@ -3,8 +3,8 @@
     <div class="music-info d-flex flex-column p-2" style="border-bottom: 2px solid gray;">
       <div>
         <div>
-          <h1>Grand Escape</h1>
-          <h2>Radwimps</h2>
+          <h1>{{ title }}</h1>
+          <h2>{{ artist }}</h2>
         </div>
         <div class="d-flex">
           <FavoriteButton :id="id" class="mr-2"></FavoriteButton>
@@ -151,6 +151,14 @@ export default {
   },
   props: {
     file: {
+      type: String,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    artist: {
       type: String,
       default: null
     },
