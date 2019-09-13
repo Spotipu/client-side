@@ -15,6 +15,61 @@
           <div @click.prevent="logout()" class="navbar-item">
               Logout
           </div>
+
+          <div id="plus-song">
+            <b-form @submit.prevent="addSong()">
+                    <b-form-group
+                    label="Music File"
+                    label-for="music-file"
+                    >   
+                        <b-form-file
+                        v-on:change="handlefileupload($event)"
+                        lang="es"
+                        accept=".mp3"
+                        class="mt-3" 
+                        plain>
+                        </b-form-file>
+                        <div class="mt-3">Selected file: {{ file2 ? file2.name : '' }}</div>
+                    
+                    </b-form-group>
+                   
+                    <b-form-group id="input-group-2" label="Artist" label-for="input-2">
+                        <b-form-input
+                        id="input-2"
+                        v-model="artist"
+                        required
+                        placeholder="Artist Name"
+                        ></b-form-input>
+                    </b-form-group>
+
+                     <b-form-group id="input-group-3" label="Title" label-for="input-3">
+                        <b-form-input
+                        id="input-3"
+                        v-model="title"
+                        required
+                        placeholder="Title"
+                        ></b-form-input>
+                    </b-form-group>
+
+                    <b-button type="submit" variant="warning">Add Song</b-button>
+                </b-form>
+
+
+            <!-- <form @submit.prevent="addSong()">
+                Your Song file Here:
+                <input
+                type="file"
+                v-on:change="handlefileupload($event)"
+                lang="es"
+                accept=".mp3"
+                />
+                Artist
+                <input type="text" v-model="artist" />
+                Title
+                <input type="text" v-model="title" />
+                <input type="submit" value="add song" />
+            </form> -->
+            </div>
       </div>
 
       <div id="main-spo">
@@ -45,7 +100,10 @@ export default {
     data : function(){
         return {
             homePage : "allMusic",
-            allMusic : []
+            allMusic : [],
+            file: "",
+            artist: "",
+            title: ""
         }
     },
     methods : {
@@ -74,7 +132,40 @@ export default {
                 console.log("ERR");
                 console.log( JSON.stringify( err , null , 2 ) );
             });
+        },
+        handlefileupload(event) {
+            let file = event.target.files || event.dataTransfer.files;
+            this.file = file[0];
+            },
+            addSong() {
+      const token = localStorage.getItem("token");
+      let formData = new FormData();
+      formData.set("file", this.file);
+      formData.set("title", this.title);
+      formData.set("artist", this.artist);
+      axios({
+        method: "POST",
+        url: `${serverURL}/music/upload`,
+        data: formData,
+        headers: {
+          token
         }
+      })
+        .then(({ data }) => {
+          Swal.fire({
+            type: "success",
+            text: "Song Added!"
+          });
+          this.$emit("fetchAllSong");
+        })
+        .catch(err => {
+          console.log(err);
+          Swal.fire({
+            type: "error",
+            text: "error Addsong!"
+          });
+        });
+    }
     },
     created : function(){
         this.fetchAllSong();
@@ -88,6 +179,10 @@ export default {
 </script>
 
 <style>
+    #plus-song {
+        padding: 20px;
+    }
+
     #navbar-spo {
   position: fixed;
   z-index: 999;
@@ -106,8 +201,8 @@ export default {
 .navbar-item {
         width: 100%;
         margin: 0px;
-        padding: 20px 20px;
-        font-size: 18px;
+        padding: 10px 20px;
+        font-size: 14px;
         font-weight: 700;
         text-align: left;
         color: white;

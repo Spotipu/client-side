@@ -6,7 +6,7 @@
     <b-row>
       <b-col class="my-3" cols="12" v-for="music in myMusic" :key="music._id">
           <b class="card">
-            <Audio :file="music.url"></Audio>
+            <Audio :title="music.title" :artist="music.artist" :file="music.url"></Audio>
           </b>
       </b-col>
     </b-row>
