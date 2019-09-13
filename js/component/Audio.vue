@@ -8,7 +8,22 @@
         </div>
         <div class="d-flex">
           <FavoriteButton :id="id" class="mr-2"></FavoriteButton>
-          <button class="btn music-main-btn">Delete</button>
+          <DeleteButton :id="id" class="mr-2" @fetchAllSong="fetchAllSong()"></DeleteButton>
+          <div>
+            <div
+              class="fb-share-button"
+              data-href="https://developers.facebook.com/docs/plugins/"
+              data-layout="button"
+              data-size="small"
+            >
+              <a target="_blank" :href="file" class="fb-xfbml-parse-ignore">Share</a>
+            </div>
+            <a
+              target="_blank"
+              class="twitter-share-button"
+              :href="`https://twitter.com/intent/tweet?text=${file}`"
+            >Tweet</a>
+          </div>
         </div>
       </div>
     </div>
@@ -114,6 +129,7 @@
 
 <script>
 import FavoriteButton from "./FavoriteButton";
+import DeleteButton from "./DeleteButton";
 
 export default {
   data: function() {
@@ -130,7 +146,8 @@ export default {
     };
   },
   components: {
-    FavoriteButton
+    FavoriteButton,
+    DeleteButton
   },
   props: {
     file: {
@@ -177,6 +194,9 @@ export default {
     }
   },
   methods: {
+    fetchAllSong() {
+      this.$emit("fetchAllSong");
+    },
     convertTimeHHMMSS: function(val) {
       let hhmmss = new Date(val * 1000).toISOString().substr(11, 8);
       return hhmmss.indexOf("00:") === 0 ? hhmmss.substr(3) : hhmmss;

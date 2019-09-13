@@ -1,7 +1,7 @@
 <template>
   <div>
       <div v-if="homePage == 'allMusic'">
-        <AllMusic :allMusic='allMusic'></AllMusic>
+        <AllMusic :allMusic='allMusic' @fetchAllSong="fetchAllSong()"></AllMusic>
         <button @click.prevent="changeHomePage('allFav')"> All Favorite </button>
       </div>
       <div v-else-if="homePage == 'allFav'">
