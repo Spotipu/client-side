@@ -8,7 +8,8 @@
         </div>
         <div class="d-flex">
           <FavoriteButton :id="id" class="mr-2"></FavoriteButton>
-          <button class="btn music-main-btn">Delete</button>
+          <DeleteButton :id="id" class="mr-2"></DeleteButton>
+          <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Bagikan</a></div>
         </div>
       </div>
     </div>
@@ -113,6 +114,7 @@
 </template>
 
 <script>
+import DeleteButton from "./DeleteButton";
 import FavoriteButton from "./FavoriteButton";
 
 export default {
@@ -130,7 +132,8 @@ export default {
     };
   },
   components: {
-    FavoriteButton
+    FavoriteButton,
+    DeleteButton
   },
   props: {
     file: {

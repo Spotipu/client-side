@@ -16,7 +16,6 @@
 <script>
 import server from "../apis/server";
 import Audio from "../component/Audio";
-import FavoriteButton from "./FavoriteButton";
 
 const { axios, serverURL, Swal } = server;
 
@@ -42,7 +41,7 @@ export default {
         })
         .catch(err => {
           console.log("ERR");
-          console.log( JSON.stringify( err , null , 2 ) );
+          console.log(JSON.stringify(err, null, 2));
         });
     },
     fetchFavMusic() {
@@ -54,7 +53,6 @@ export default {
   },
   components: {
     Audio,
-    FavoriteButton
   }
 };
 </script>

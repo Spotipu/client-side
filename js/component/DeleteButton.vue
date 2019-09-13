@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click.prevent="deleteMusic( id )">Delete</button>
+        <button @click.prevent="deleteMusic( id )" class="btn music-main-btn">Delete</button>
     </div>
 </template>
 
@@ -45,6 +45,18 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.music-main-btn {
+  border: 3px solid gray;
+  font-weight: bolder;
+  color: grey;
+  transition: 0.7s all;
+}
+.music-main-btn:hover {
+  border: 3px solid gray;
+  font-weight: bolder;
+  background-color: grey;
+  color: whitesmoke;
+  transition: 0.7s all;
+}
 </style>
