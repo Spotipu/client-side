@@ -6,7 +6,7 @@
     <b-row>
       <b-col class="my-3" cols="12" v-for="music in myMusic" :key="music._id">
           <b class="card">
-            <Audio :title="music.title" :artist="music.artist" :file="music.url"></Audio>
+            <Audio :title="music.title" :artist="music.artist" :file="music.url" :id="music._id" @fetchAllSong='fetchAllSong'></Audio>
           </b>
       </b-col>
     </b-row>
@@ -27,29 +27,33 @@ const { serverURL , axios } = server
 export default {
     data : function () {
         return {
-            myMusic : []
+            // myMusic : []
         }
     },
+    props: ['myMusic'],
     methods : {
-        fetchMyMusic : function () {
-            const token = localStorage.getItem('token');
-            axios({
-                method : "GET",
-                url : `${serverURL}/music/mymusic`,
-                headers :{
-                    token
-                }
-            })
-            .then( response => {
-                this.myMusic = response.data
-            })
-            .catch( err => {
-                console.log( 'err');
-            })
+        // fetchMyMusic : function () {
+        //     const token = localStorage.getItem('token');
+        //     axios({
+        //         method : "GET",
+        //         url : `${serverURL}/music/mymusic`,
+        //         headers :{
+        //             token
+        //         }
+        //     })
+        //     .then( response => {
+        //         this.myMusic = response.data
+        //     })
+        //     .catch( err => {
+        //         console.log( 'err');
+        //     })
+        // },
+        fetchAllSong(){
+            this.$emit('fetchAllSong')
         }
     },
     created: function() {
-        this.fetchMyMusic();
+        // this.fetchMyMusic();
     },
     components : {
         Audio

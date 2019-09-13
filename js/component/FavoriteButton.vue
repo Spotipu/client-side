@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click.prevent="fav( id )" class="btn music-main-btn">Add to Favorite</button>
+    <button @click.prevent="fav( id )" class="btn music-main-btn" >Add to Favorite</button>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
             type: "success",
             text: "FAV"
           });
+          this.$emit('fetchAllSong');
         })
         .catch(err => {
           Swal.fire({

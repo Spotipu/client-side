@@ -2,7 +2,7 @@
      <div>
         <b-container>
             <b-card class="my-5"
-            header="Login"
+            header="Register"
             >
                 <b-form @submit.prevent="register()">
                     <b-form-group

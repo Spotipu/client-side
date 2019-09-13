@@ -6,7 +6,7 @@
 
 <script>
 import server from '../apis/server';
-const { serverURL , axios } = server
+const { serverURL , axios , Swal } = server
 export default {
     data : function() {
         return {
@@ -19,13 +19,14 @@ export default {
             const token = localStorage.getItem('token')
             axios({
                 method :"PATCH",
-                url : `${serverURL}/unfavorite/${id}`,
+                url : `${serverURL}/music/unfavorite/${id}`,
                 headers : {
                     token
                 }
             })
             .then( response => {
-                this.$emit('fetchFav');
+                Swal.fire("Success" , "Unfavorite!")
+                this.$emit('fetchAllSong');
             })
             .catch( err => {
                 console.log("eRROR UNFAVORITE BUTTON")

@@ -6,9 +6,9 @@
     <b-row>
       <b-col class="my-3" cols="12" v-for="fav in myFavorites" :key="fav._id">
           <b class="card">
-            <Audio :title="fav.title" :artist="fav.artist" :file="fav.url"></Audio>
+            <Audio :title="fav.title" :artist="fav.artist" :file="fav.url"  @fetchAllSong="fetchAllSong()"></Audio>
             <div>
-                <UnFavoriteButton :id="fav._id" @unFav="fetchAllFavorites()"></UnFavoriteButton>
+                <UnFavoriteButton :id="fav._id" @fetchAllSong="fetchAllSong ()"></UnFavoriteButton>
             </div>            
           </b>
       </b-col>
@@ -40,30 +40,36 @@ const { axios, serverURL , Swal } = server
 export default {
     data : function () {
         return  {
-            myFavorites : []
         }
     },
+    props : ["myFavorites"],
     methods : {
-        fetchAllFavorites () {
-            const token = localStorage.getItem('token')
-            axios({
-                method : "GET",
-                url : `${serverURL}/music/favorite`,
-                headers : {
-                    token
-                }
-            })
-            .then( response => {
-                this.myFavorites = response.data;
-            })
-            .catch( err => {
-                console.log("ERR")
-                console.log( err );
-            }) 
+        // fetchAllFavorites () {
+        //     const token = localStorage.getItem('token')
+        //     axios({
+        //         method : "GET",
+        //         url : `${serverURL}/music/favorite`,
+        //         headers : {
+        //             token
+        //         }
+        //     })
+        //     .then( response => {
+        //         this.myFavorites = response.data;
+        //     })
+        //     .catch( err => {
+        //         console.log("ERR")
+        //         console.log( err );
+        //     }) 
+        // },
+        fetchFav() {
+            this.$emit('fetchAllFavorites')
+        },
+        fetchAllSong(){
+            this.$emit('fetchAllSong')
         }
     },
-    created : function (){
-        this.fetchAllFavorites()
+    created : function() {
+        this.fetchFav()
     },
     components : {
         Audio,

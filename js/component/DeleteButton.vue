@@ -14,6 +14,7 @@ export default {
   props: ["id"],
   methods: {
     deleteMusic: function(id) {
+      console.log(this.id)
       console.log(`aaaaaaaaaaaa`);
       const token = localStorage.getItem("token");
       axios({
@@ -24,11 +25,12 @@ export default {
         }
       })
         .then(response => {
-          this.$emit("fetchAllSong");
           Swal.fire({
             type: "success",
             text: "Deleted!"
           });
+          this.$emit("fetchAllSong");
+
         })
         .catch(err => {
           Swal.fire({

@@ -7,7 +7,7 @@
           <h2>{{ artist }}</h2>
         </div>
         <div class="d-flex">
-          <FavoriteButton :id="id" class="mr-2"></FavoriteButton>
+          <FavoriteButton :id="id" class="mr-2" @fetchAllSong='fetchAllSong()'></FavoriteButton>
           <DeleteButton :id="id" class="mr-2" @fetchAllSong="fetchAllSong()"></DeleteButton>
           <div>
             <div
@@ -163,8 +163,7 @@ export default {
       default: null
     },
     id: {
-      type: String,
-      default: null
+      type: String
     },
     autoPlay: {
       type: Boolean,
@@ -204,6 +203,9 @@ export default {
   methods: {
     fetchAllSong() {
       this.$emit("fetchAllSong");
+    },
+    fetchAllFavorites() {
+      this.$emit('fetchAllFavorites')
     },
     convertTimeHHMMSS: function(val) {
       let hhmmss = new Date(val * 1000).toISOString().substr(11, 8);
