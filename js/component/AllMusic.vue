@@ -1,5 +1,19 @@
 <template>
-  <div class="d-flex flex-column justify-content-center">
+  <b-container>
+    <b-row>
+      <h3>All Music</h3>
+    </b-row>
+    <b-row>
+      <b-col class="my-3" cols="12" v-for="music in allMusic"
+        :key="music._id">
+          <b class="card">
+            <Audio :file="music.url" :id="music._id"></Audio>
+          </b>
+      </b-col>
+    </b-row>
+  </b-container>
+
+  <!-- <div class="d-flex flex-column justify-content-center">
     <h1 class="text-center mt-5">All Music</h1>
     <div class="row d-flex justify-content-center align-items-start mt-5">
       <div
@@ -10,7 +24,7 @@
         <Audio :file="music.url" :id="music._id"></Audio>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
