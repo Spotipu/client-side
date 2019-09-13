@@ -42,7 +42,7 @@ export default {
         })
         .catch(err => {
           console.log("ERR");
-          console.log(err);
+          console.log( JSON.stringify( err , null , 2 ) );
         });
     },
     fetchFavMusic() {
