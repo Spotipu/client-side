@@ -2,8 +2,8 @@
   <div id="navbar-spo">
     <img class="my-4" width="60%" src="../static/logo.png" alt />
 
-    <NavbarItem :name="'All Music'"></NavbarItem>
-    <NavbarItem :name="'My Music'"></NavbarItem>
+    <NavbarItem :name="'All Music'" @changeHomePage="changeHomePage"></NavbarItem>
+    <NavbarItem :name="'My Music'" @changeHomePage="changeHomePage"></NavbarItem>
     <NavbarItem :name="'Favorites'" @changeHomePage="changeHomepage('allFav')"></NavbarItem>
     <NavbarItem :name="'Logout'" @logout="logout()"></NavbarItem>
     <div>

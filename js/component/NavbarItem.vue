@@ -15,10 +15,15 @@ export default {
     methods : {
         navFunction(){
             if(this.name === "All Music"){
+                this.$emit('changeHomePage', 'allMusic')
                 console.log("a")
             } else if ( this.name === "My Music" ) {
+                this.$emit('changeHomePage', 'myMusic')
+
                 console.log("b")
             } else if ( this.name === "Favorites" ) {
+                this.$emit('changeHomePage', 'myFav')
+
                 console.log("c")
             } else if ( this.name === "Logout" ) {
                 console.log("logout clicked")
