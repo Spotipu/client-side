@@ -1,9 +1,20 @@
 <template>
   <div>
-      <h1>All Music</h1>
-      <div v-for="music in allMusic" :key="music._id">
-        <Audio :file="music.url"></Audio>
-      </div>
+      <b-container>
+          <b-row>
+              <h3>All Music</h3>
+          </b-row>
+          <b-row>
+              <b-col cols="3">
+                <div v-for="music in allMusic" :key="music._id">
+                    <b-card
+                    header="Nama Lagu">
+                        <Audio :file="music.url"></Audio>                        
+                    </b-card>
+                </div>
+              </b-col>
+          </b-row>
+      </b-container>
   </div>
 </template>
 
