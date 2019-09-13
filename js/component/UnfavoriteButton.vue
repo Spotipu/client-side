@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click.prevent="deleteMusic( id )" class="btn music-main-btn">Delete</button>
+    <button @click.prevent="fav( id )" class="btn music-main-btn">Unfavorite</button>
   </div>
 </template>
 
@@ -13,29 +13,27 @@ export default {
   },
   props: ["id"],
   methods: {
-    deleteMusic: function(id) {
-      console.log(`aaaaaaaaaaaa`);
+    fav: function(id) {
       const token = localStorage.getItem("token");
       axios({
-        method: "DELETE",
-        url: `${serverURL}/music/${id}`,
+        method: "PATCH",
+        url: `${serverURL}/music/unfavorite/${id}`,
         headers: {
           token
         }
       })
         .then(response => {
-          this.$emit("fetchAllSong");
           Swal.fire({
             type: "success",
-            text: "Deleted!"
+            text: "Success remove favorite"
           });
         })
         .catch(err => {
           Swal.fire({
             type: "error",
-            text: "Delete Error"
+            text: "already fav"
           });
-          console.log("eRROR DELETE BUTTON");
+          console.log("eRROR FAVORITE BUTTON");
           console.log(JSON.stringify(err.response, null, 2));
         });
     }

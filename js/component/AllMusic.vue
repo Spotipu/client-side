@@ -21,7 +21,7 @@
         :key="music._id"
         class="shadow-lg m-2 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
       >
-        <Audio :file="music.url" :id="music._id"></Audio>
+        <Audio :file="music.url" :id="music._id"  @fetchAllSong="fetchAllSong()"></Audio>
       </div>
     </div>
   </div> -->
@@ -36,17 +36,18 @@ const { axios, serverURL, Swal } = server;
 
 export default {
   data: function() {
-    return {
-    };
+    return {};
   },
-  props: ['allMusic'],
+  props: ["allMusic"],
   methods: {
-    
+    fetchAllSong() {
+      this.$emit("fetchAllSong");
+    },
     fetchFavMusic() {
       this.$emit("fetchFavMusic");
     }
   },
- 
+
   components: {
     Audio,
     FavoriteButton
