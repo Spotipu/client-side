@@ -7,8 +7,7 @@
         :key="music._id"
         class="shadow-lg m-2 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
       >
-        <Audio :file="music.url"></Audio>
-        <FavoriteButton :id="music._id"></FavoriteButton>
+        <Audio :file="music.url" :id="music._id"></Audio>
       </div>
     </div>
   </div>

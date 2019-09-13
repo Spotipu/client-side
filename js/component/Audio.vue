@@ -6,11 +6,20 @@
           <h1>Grand Escape</h1>
           <h2>Radwimps</h2>
         </div>
-        <div>
-          <button class="btn music-main-btn">Add to Favorite</button>
+        <div class="d-flex">
+          <FavoriteButton :id="id" class="mr-2"></FavoriteButton>
           <button class="btn music-main-btn">Delete</button>
         </div>
       </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center p-1 m-0">
+      <div class="d-flex justify-content-start align-items-center">
+        <div class="player-time-current">{{ currentTime }}</div>
+        <div v-on:click="seek" class="player-progress m-1" title="Time played : Total time">
+          <div :style="{ width: this.percentComplete + '%' }" class="player-seeker"></div>
+        </div>
+      </div>
+      <div class="player-time-total">{{ durationTime }}</div>
     </div>
     <div class="music-btn d-flex justify-content-between p-2">
       <div class="player-controls d-flex justify-content-between" style="width: 100%">
@@ -39,13 +48,6 @@
               />
             </svg>
           </a>
-        </div>
-        <div style="width: 200px" class="d-flex justify-content-between align-items-center p-1">
-          <div class="player-time-current">{{ currentTime }}</div>
-          <div v-on:click="seek" class="player-progress" title="Time played : Total time">
-            <div :style="{ width: this.percentComplete + '%' }" class="player-seeker"></div>
-          </div>
-          <div class="player-time-total">{{ durationTime }}</div>
         </div>
         <div class="d-flex justify-content-center">
           <a v-on:click.prevent="download" href="#">
@@ -102,15 +104,17 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- <div class="d-flex justify-content-center align-items-center">
-    <div class="player col-12 col-sm-12 col-md-3 col-xl-3 shadow">
-      <audio :loop="innerLoop" ref="audiofile" :src="file" preload="auto" style="display: none;"></audio>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="player col-12 col-sm-12 col-md-3 col-xl-3 shadow">
+        <audio :loop="innerLoop" ref="audiofile" :src="file" preload="auto" style="display: none;"></audio>
+      </div>
     </div>
-  </div>-->
+  </div>
 </template>
 
 <script>
+import FavoriteButton from "./FavoriteButton";
+
 export default {
   data: function() {
     return {
@@ -125,8 +129,15 @@ export default {
       volume: 100
     };
   },
+  components: {
+    FavoriteButton
+  },
   props: {
     file: {
+      type: String,
+      default: null
+    },
+    id: {
       type: String,
       default: null
     },
@@ -273,11 +284,11 @@ body {
   position: relative;
 }
 .player-progress .player-seeker {
+  max-width: 100%;
+  height: 2px;
   background-color: #404040;
-  bottom: 0;
-  left: 0;
+  opacity: 0.5s;
   position: absolute;
-  top: 0;
 }
 ​ .player-time {
   width: 200px;
