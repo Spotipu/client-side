@@ -23,35 +23,16 @@ const { axios, serverURL, Swal } = server;
 export default {
   data: function() {
     return {
-      allMusic: []
     };
   },
+  props: ['allMusic'],
   methods: {
-    fetchAllMusic() {
-      const token = localStorage.getItem("token");
-      axios({
-        method: "GET",
-        url: `${serverURL}/music`,
-        headers: {
-          token
-        }
-      })
-        .then(response => {
-          this.allMusic = response.data;
-          console.log(this.allMusic);
-        })
-        .catch(err => {
-          console.log("ERR");
-          console.log( JSON.stringify( err , null , 2 ) );
-        });
-    },
+    
     fetchFavMusic() {
       this.$emit("fetchFavMusic");
     }
   },
-  created: function() {
-    this.fetchAllMusic();
-  },
+ 
   components: {
     Audio,
     FavoriteButton
