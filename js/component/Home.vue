@@ -1,57 +1,33 @@
 <template>
   <div>
-<<<<<<< HEAD
       <div v-if="homePage == 'allMusic'">
-            <AllMusic></AllMusic>
-            <button @click.prevent="changeHomePage('allFav')"> All Favorite </button>
-            <button @click.prevent="changeHomePage('myMusic')"> My Music</button>
-
-      </div>
-      <div v-else-if="homePage == 'allFav'">
-            <AllFavorite></AllFavorite>
-            <button @click.prevent="changeHomePage('allMusic')"> All Music </button>
-            <button @click.prevent="changeHomePage('myMusic')"> My Music</button>
-
-      </div>
-      <div v-else-if="homePage == 'myMusic'">
-            <MyMusic></MyMusic>
-            <button @click.prevent="changeHomePage('allMusic')"> All Music</button>
-            <button @click.prevent="changeHomePage('allFav')"> All Favorite </button>
-      </div>
-      <button @click.prevent='logout()'>Logout</button>
-=======
-      <!-- <div v-if="homePage == 'allMusic'">
-        <AllMusic></AllMusic>
+        <AllMusic :allMusic='allMusic'></AllMusic>
         <button @click.prevent="changeHomePage('allFav')"> All Favorite </button>
       </div>
       <div v-else-if="homePage == 'allFav'">
-        <AllFavorites></AllFavorites>
+        <!-- <AllFavorite></AllFavorite> -->
         <button @click.prevent="changeHomePage('allMusic')"> All Music </button>
-      </div> -->
-      <Navbar @logout="logout()"></Navbar>
+      </div>
+      <Navbar @logout="logout()" @fetchAllSong="fetchAllSong()"></Navbar>
       <Main :homePage="homePage"></Main>
->>>>>>> add layout
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-import AllFavorite from './AllFavorite';
-import AllMusic from './AllMusic'
-import MyMusic from './MyMusic'
-=======
 import Navbar from './Navbar'
 import Main from './Main'
 
-import AllFavorites from './AllFavorites'
+import AllFavorite from './AllFavorite'
 import AllMusic from './AllMusic'
+import server from "../apis/server";
+const { serverURL, Swal, axios } = server;
 
->>>>>>> add layout
 
 export default {
     data : function(){
         return {
-            homePage : "allMusic"
+            homePage : "allMusic",
+            allMusic : []
         }
     },
     methods : {
@@ -62,19 +38,34 @@ export default {
         },
         changeHomePage( page ) {
             this.homePage = page;
+        },
+        fetchAllSong() {
+            const token = localStorage.getItem("token");
+            axios({
+                method: "GET",
+                url: `${serverURL}/music`,
+                headers: {
+                token
+                }
+            })
+            .then(response => {
+                this.allMusic = response.data;
+                console.log(this.allMusic);
+            })
+            .catch(err => {
+                console.log("ERR");
+                console.log( JSON.stringify( err , null , 2 ) );
+            });
         }
     },
+    created : function(){
+        this.fetchAllSong();
+    },
     components : {
-<<<<<<< HEAD
         AllFavorite,
-        AllMusic,
-        MyMusic
-=======
-        AllFavorites,
         AllMusic,
         Navbar,
         Main
->>>>>>> add layout
     }
 }
 </script>
