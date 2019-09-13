@@ -55,6 +55,7 @@ export default {
       this.$emit("changeHomePage");
     },
     addSong() {
+      Swal.showLoading();
       const token = localStorage.getItem("token");
       let formData = new FormData();
       formData.set("file", this.file);
@@ -69,6 +70,7 @@ export default {
         }
       })
         .then(({ data }) => {
+          Swal.close();
           Swal.fire({
             type: "success",
             text: "Song Added!"
