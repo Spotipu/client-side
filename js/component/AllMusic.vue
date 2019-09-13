@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="d-flex flex-column justify-content-center">
     <h1 class="text-center mt-5">All Music</h1>
     <div class="row d-flex justify-content-center align-items-start mt-5">
@@ -10,6 +11,24 @@
         <Audio :file="music.url" :id="music._id"></Audio>
       </div>
     </div>
+=======
+  <div>
+      <b-container>
+          <b-row>
+              <h3>All Music</h3>
+          </b-row>
+          <b-row>
+              <b-col cols="3">
+                <div v-for="music in allMusic" :key="music._id">
+                    <b-card
+                    header="Nama Lagu">
+                        <Audio :file="music.url"></Audio>                        
+                    </b-card>
+                </div>
+              </b-col>
+          </b-row>
+      </b-container>
+>>>>>>> add layout
   </div>
 </template>
 

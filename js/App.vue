@@ -8,9 +8,6 @@
             <Register @register="register" @error="showError" @loginPage='changePage'></Register>
         </div>
         <div v-else-if="currentPage == 'home'">
-            
-
-
             <Home @logout="logout" ></Home>
         </div>
     </div>
@@ -28,7 +25,7 @@ const { axios , serverURL, Swal } = server;
 export default {
     data() {
         return {
-            currentPage : 'login',
+            currentPage : 'home',
             username : ""
         };
     },
@@ -74,12 +71,12 @@ export default {
         Home
     },
     created : function() {
-        const token = localStorage.getItem('token')
-        if ( token ) {
-            this.changePage('home')
-        } else {
-            this.changePage('login')
-        }
+        // const token = localStorage.getItem('token')
+        // if ( token ) {
+        //     this.changePage('home')
+        // } else {
+        //     this.changePage('login')
+        // }
     }
 }
 </script>
