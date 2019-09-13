@@ -2,8 +2,8 @@
     <div>
         REGISTER
         <form @submit.prevent="register()">
-            <input type="text" v-model='registerEmail'>
-            <input type="text" v-model='registerPassword'>
+            <input type="email" v-model='registerEmail'>
+            <input type="password" v-model='registerPassword'>
             <input type="submit" value="Register">
         </form>
         <button @click.prevent="loginPage()">Login</button>
