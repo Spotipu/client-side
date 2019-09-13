@@ -1,13 +1,46 @@
 <template>
-  <div>
-      LOGIN
+    <div>
+      <b-container>          
         <span v-if="(errorMessage.length != 0)">{{ errorMessage }}</span>
-        <form @submit.prevent="login()">
-            <input type="text" v-model='email'>
-            <input type="text" v-model='password'>
-            <input type="submit" value="Login">
-        </form>
-        <button @click.prevent="registerPage()"> Register Here </button>
+        <b-card class="my-5"
+        header="Login"
+        >
+
+            <b-form @submit.prevent="login()">
+                <b-form-group
+                id="input-group-1"
+                label="Email address:"
+                label-for="input-1"
+                description="We'll never share your email with anyone else."
+                >
+                    <b-form-input
+                    id="input-1"
+                    v-model="email"
+                    type="email"
+                    required
+                    placeholder="Enter email"
+                    ></b-form-input>
+                </b-form-group>
+
+                <b-form-group
+                id="input-group-2"
+                label="Password:"
+                label-for="input-2"
+                >
+                    <b-form-input
+                    id="input-2"
+                    v-model="password"
+                    type="password"
+                    required
+                    placeholder="Enter password"
+                    ></b-form-input>
+                </b-form-group>
+                <b-button type="submit" variant="primary">Login</b-button>
+                <b-button id="toRegister" @click.prevent="registerPage()" variant="warning">Register Here</b-button>
+            </b-form>
+            <hr>
+        </b-card>
+      </b-container>      
   </div>
 </template>
 
@@ -60,5 +93,7 @@ export default {
 </script>
 
 <style>
-
+    #toRegister {
+        float : right
+    }
 </style>

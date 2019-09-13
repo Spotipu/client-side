@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div>
         REGISTER
         <form @submit.prevent="register()">
@@ -7,6 +8,48 @@
             <input type="submit" value="Register">
         </form>
         <button @click.prevent="loginPage()">Login</button>
+=======
+     <div>
+        <b-container>
+            <b-card class="my-5"
+            header="Login"
+            >
+                <b-form @submit.prevent="register()">
+                    <b-form-group
+                id="input-group-1"
+                label="Email address:"
+                label-for="input-1"
+                description="We'll never share your email with anyone else."
+                >
+                    <b-form-input
+                        id="input-1"
+                        v-model="registerEmail"
+                        type="email"
+                        required
+                        placeholder="Enter email"
+                        ></b-form-input>
+                    </b-form-group>
+
+                    <b-form-group
+                    id="input-group-2"
+                    label="Password:"
+                    label-for="input-2"
+                    >
+                        <b-form-input
+                        id="input-2"
+                        v-model="registerPassword"
+                        type="password"
+                        required
+                        placeholder="Enter password"
+                        ></b-form-input>
+                    </b-form-group>
+                    <b-button type="submit" variant="primary">Register</b-button>
+                    <b-button id="toLogin" @click.prevent="loginPage()" variant="warning">Login Here</b-button>
+                </b-form>
+                <hr>
+            </b-card>
+        </b-container>
+>>>>>>> add layout
     </div>
 </template>
 
@@ -47,5 +90,7 @@ export default {
 </script>
 
 <style>
-
+    #toLogin {
+        float: right
+    }
 </style>

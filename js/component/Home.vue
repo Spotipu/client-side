@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
       <div v-if="homePage == 'allMusic'">
             <AllMusic></AllMusic>
             <button @click.prevent="changeHomePage('allFav')"> All Favorite </button>
@@ -18,13 +19,34 @@
             <button @click.prevent="changeHomePage('allFav')"> All Favorite </button>
       </div>
       <button @click.prevent='logout()'>Logout</button>
+=======
+      <!-- <div v-if="homePage == 'allMusic'">
+        <AllMusic></AllMusic>
+        <button @click.prevent="changeHomePage('allFav')"> All Favorite </button>
+      </div>
+      <div v-else-if="homePage == 'allFav'">
+        <AllFavorites></AllFavorites>
+        <button @click.prevent="changeHomePage('allMusic')"> All Music </button>
+      </div> -->
+      <Navbar @logout="logout()"></Navbar>
+      <Main :homePage="homePage"></Main>
+>>>>>>> add layout
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import AllFavorite from './AllFavorite';
 import AllMusic from './AllMusic'
 import MyMusic from './MyMusic'
+=======
+import Navbar from './Navbar'
+import Main from './Main'
+
+import AllFavorites from './AllFavorites'
+import AllMusic from './AllMusic'
+
+>>>>>>> add layout
 
 export default {
     data : function(){
@@ -34,6 +56,7 @@ export default {
     },
     methods : {
         logout() {
+            console.log('home')
             localStorage.removeItem('token');
             this.$emit('logout');
         },
@@ -42,9 +65,16 @@ export default {
         }
     },
     components : {
+<<<<<<< HEAD
         AllFavorite,
         AllMusic,
         MyMusic
+=======
+        AllFavorites,
+        AllMusic,
+        Navbar,
+        Main
+>>>>>>> add layout
     }
 }
 </script>
